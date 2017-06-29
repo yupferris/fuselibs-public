@@ -281,7 +281,7 @@ namespace Fuse.Drawing
 		{
 			if (_gradientBuffer == null)
 			{
-				_gradientBuffer = FramebufferPool.Lock( int2(_gradientSize,1), Format.RGBA8888, false );
+				_gradientBuffer = FramebufferPool.Lock( int2(_gradientSize,1), Format.RGBA8888, false, true );
 				_invalid = true;
 			}
 			

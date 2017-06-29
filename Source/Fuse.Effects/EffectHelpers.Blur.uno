@@ -49,7 +49,7 @@ namespace Fuse.Effects
 
 		framebuffer ResampleBilinear(DrawContext dc, texture2D tex, int2 size)
 		{
-			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 
 			dc.PushRenderTarget(fb);
 			dc.Clear(float4(0), 1);
@@ -66,7 +66,7 @@ namespace Fuse.Effects
 
 		framebuffer ResampleGaussian5tap(DrawContext dc, texture2D tex, int2 size)
 		{
-			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 
 			dc.PushRenderTarget(fb);
 			dc.Clear(float4(0), 1);
@@ -101,7 +101,7 @@ namespace Fuse.Effects
 
 		framebuffer ResampleGaussian9tap(DrawContext dc, texture2D tex, int2 size)
 		{
-			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 
 			dc.PushRenderTarget(fb);
 			dc.Clear(float4(0), 1);
@@ -155,7 +155,7 @@ namespace Fuse.Effects
 
 		framebuffer BlurHorizontal(DrawContext dc, int2 size, texture2D tex, float sigma, int samples)
 		{
-			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 
 			dc.PushRenderTarget(fb);
 			dc.Clear(float4(0), 1);
@@ -167,7 +167,7 @@ namespace Fuse.Effects
 
 		framebuffer BlurVertical(DrawContext dc, int2 size, texture2D tex, float sigma, int samples)
 		{
-			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 
 			dc.PushRenderTarget(fb);
 			dc.Clear(float4(0), 1);

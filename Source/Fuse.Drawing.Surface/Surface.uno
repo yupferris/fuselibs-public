@@ -121,7 +121,7 @@ namespace Fuse.Drawing
 			var bounds = elm.RenderBoundsWithoutEffects;
 
 			var pixelSize = (int2)Math.Ceil(bounds.Size.XY*pixelsPerPoint - float.ZeroTolerance);
- 			var fb = FramebufferPool.Lock(pixelSize.X,pixelSize.Y, Uno.Graphics.Format.RGBA8888, true);
+ 			var fb = FramebufferPool.Lock(pixelSize.X,pixelSize.Y, Uno.Graphics.Format.RGBA8888, true, true);
  			
  			Begin(dc, fb, pixelsPerPoint);
  			

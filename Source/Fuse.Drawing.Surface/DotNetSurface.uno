@@ -476,7 +476,7 @@ namespace Fuse.Drawing
 			//probably still loading
 			if (tex == null) return;
 
-			var fb = FramebufferPool.Lock( src.PixelSize, Uno.Graphics.Format.RGBA8888, false );
+			var fb = FramebufferPool.Lock( src.PixelSize, Uno.Graphics.Format.RGBA8888, false, true );
 
 			//TODO: this is not entirely correct since _drawContext could be null now -- but it isn't
 			//in any of our use cases, but the contract certainly allows for it

@@ -25,14 +25,14 @@ namespace Fuse
 			framebufferPool.UnRegister(cfb);
 		}
 
-		public static framebuffer Lock(int2 size, Format format, bool depth)
+		public static framebuffer Lock(int2 size, Format format, bool depth, bool stencil)
 		{
-			return Lock(size.X, size.Y, format, depth);
+			return Lock(size.X, size.Y, format, depth, stencil);
 		}
-		public static framebuffer Lock(int width, int height, Format format, bool depth)
+		public static framebuffer Lock(int width, int height, Format format, bool depth, bool stencil)
 		{
 			EnsurePool();
-			return framebufferPool.Lock(width, height, format, depth);
+			return framebufferPool.Lock(width, height, format, depth, stencil);
 		}
 
 		public static void Release(framebuffer fb)
@@ -94,6 +94,7 @@ namespace Fuse
 				if (fb.Size.Y != height) continue;
 				if (fb.Format != format) continue;
 				if (fb.HasDepth != flags.HasFlag(FramebufferFlags.DepthBuffer)) continue;
+				if (fb.HasStencil != flags.HasFlag(FramebufferFlags.StencilBuffer)) continue;
 				if (fb.SupportsMipmap != flags.HasFlag(FramebufferFlags.Mipmap)) continue;
 
 				framebufferPool.RemoveAt(i);
@@ -201,9 +202,15 @@ namespace Fuse
 			}
 		}
 
-		internal framebuffer Lock(int width, int height, Uno.Graphics.Format format, bool depth)
+		internal framebuffer Lock(int width, int height, Uno.Graphics.Format format, bool depth, bool stencil)
 		{
-			var fb = FindBuffer(width, height, format, depth ? FramebufferFlags.DepthBuffer : FramebufferFlags.None);
+			var flags = FramebufferFlags.None;
+			if (depth)
+				flags |= FramebufferFlags.DepthBuffer;
+			if (stencil)
+				flags |= FramebufferFlags.StencilBuffer;
+
+			var fb = FindBuffer(width, height, format, flags);
 			lastFrameUsed[fb] = frame;
 			lockedFramebuffers.Add(fb);
 			return fb;

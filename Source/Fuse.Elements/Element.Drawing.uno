@@ -41,7 +41,7 @@ namespace Fuse.Elements
 					fsz + ", max-size: " + texture2D.MaxSize;
 				return null;
 			}
-			var fb = FramebufferPool.Lock( fsz, Uno.Graphics.Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock( fsz, Uno.Graphics.Format.RGBA8888, false, true);
 			var cc = new OrthographicFrustum{
 				Origin = float2(region.Left - padding.X, region.Top - padding.Y),
 				Size = sz,

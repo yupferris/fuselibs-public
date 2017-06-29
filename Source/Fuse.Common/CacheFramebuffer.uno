@@ -86,7 +86,7 @@ namespace Fuse
 
 			if (_fb == null)
 			{
-				_fb = FramebufferPool.Lock(Width, Height, Format, Flags.HasFlag(FramebufferFlags.DepthBuffer));
+				_fb = FramebufferPool.Lock(Width, Height, Format, Flags.HasFlag(FramebufferFlags.DepthBuffer), Flags.HasFlag(FramebufferFlags.StencilBuffer));
 				FramebufferPool.Register(this);
 			}
 		}

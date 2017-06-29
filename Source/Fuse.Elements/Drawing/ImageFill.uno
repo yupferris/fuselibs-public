@@ -154,7 +154,7 @@ namespace Fuse.Drawing
 				if (_tempTexture == null)
 				{
 					var size = int2(dp.Texture.Size.X + 1, dp.Texture.Size.Y + 1);
-					_tempTexture = FramebufferPool.Lock(size, Format.RGBA8888, false);
+					_tempTexture = FramebufferPool.Lock(size, Format.RGBA8888, false, true);
 					DisposalManager.Add(this);
 					RepeatBaker.Singleton.FillBuffer(dc, dp.Texture, _tempTexture);
 				}
